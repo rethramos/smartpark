@@ -9,26 +9,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 @RequestMapping(path = "/parking_lots")
 public class ParkingLotController {
-    private ParkingLotRepository parkingLotRepository;
+    private ParkingLotService parkingLotService;
 
-    public ParkingLotController(ParkingLotRepository parkingLotRepository) {
-        this.parkingLotRepository = parkingLotRepository;
+    public ParkingLotController(ParkingLotService parkingLotService) {
+        this.parkingLotService = parkingLotService;
     }
 
     @PostMapping
-    public @ResponseBody ParkingLot create(@RequestBody ParkingLot parkingLot) {
+    public @ResponseBody ParkingLot create(@RequestBody CreateParkingLotDto createParkingLotDto) {
+        return this.parkingLotService.create(parkingLotService.toParkingLot(createParkingLotDto));
 
-        return this.parkingLotRepository.save(parkingLot);
-        
     }
-    
+
     @GetMapping
     public @ResponseBody List<ParkingLot> getMany() {
-        return parkingLotRepository.findAll();
+        return parkingLotService.findAll();
     }
 
 }
