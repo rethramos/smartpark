@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class ParkingLot {
@@ -11,7 +12,8 @@ public class ParkingLot {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String lotId;
-    // Address location;
+    @OneToOne(optional = false)
+    Address location;
     private Integer capacity;
     private Integer occupiedSpaces;
 
@@ -46,6 +48,14 @@ public class ParkingLot {
 
     public void setOccupiedSpaces(Integer occupiedSpaces) {
         this.occupiedSpaces = occupiedSpaces;
+    }
+
+    public Address getLocation() {
+        return location;
+    }
+
+    public void setLocation(Address location) {
+        this.location = location;
     }
 
 }
