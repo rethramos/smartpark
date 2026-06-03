@@ -1,4 +1,4 @@
-package com.rethramos.smartpark;
+package com.rethramos.smartpark.parking;
 
 import java.util.List;
 

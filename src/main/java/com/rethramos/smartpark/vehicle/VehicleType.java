@@ -1,4 +1,4 @@
-package com.rethramos.smartpark;
+package com.rethramos.smartpark.vehicle;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

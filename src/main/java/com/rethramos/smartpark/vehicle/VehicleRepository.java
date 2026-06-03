@@ -1,4 +1,4 @@
-package com.rethramos.smartpark;
+package com.rethramos.smartpark.vehicle;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

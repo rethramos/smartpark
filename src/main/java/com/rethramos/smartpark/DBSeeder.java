@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.rethramos.smartpark.foundation.Address;
+import com.rethramos.smartpark.foundation.AddressRepository;
+import com.rethramos.smartpark.vehicle.VehicleType;
+import com.rethramos.smartpark.vehicle.VehicleTypeRepository;
+
 @Component
 public class DBSeeder implements CommandLineRunner {
     @Autowired
