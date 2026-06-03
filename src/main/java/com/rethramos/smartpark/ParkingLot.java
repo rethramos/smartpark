@@ -1,0 +1,51 @@
+package com.rethramos.smartpark;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+public class ParkingLot {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String lotId;
+    // Address location;
+    private Integer capacity;
+    private Integer occupiedSpaces;
+
+    // Set<Vehicle> parkedVehicles;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getLotId() {
+        return lotId;
+    }
+
+    public void setLotId(String lotId) {
+        this.lotId = lotId;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
+    }
+
+    public Integer getOccupiedSpaces() {
+        return occupiedSpaces;
+    }
+
+    public void setOccupiedSpaces(Integer occupiedSpaces) {
+        this.occupiedSpaces = occupiedSpaces;
+    }
+
+}
