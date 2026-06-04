@@ -38,4 +38,8 @@ public class ParkingLotService {
     public List<ParkingLot> findAll() {
         return parkingLotRepository.findAll();
     }
+
+    public ParkingLot findById(Long id) {
+        return parkingLotRepository.findById(id).orElseThrow();
+    }
 }
