@@ -1,4 +1,4 @@
-package com.rethramos.smartpark.parking.validators;
+package com.rethramos.smartpark.vehicle.validators;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -11,9 +11,9 @@ import jakarta.validation.Payload;
 
 @Target({ ElementType.FIELD, ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = { UniqueLotIdValidator.class })
+@Constraint(validatedBy = { UniqueLicensePlateValidator.class })
 @Documented
-public @interface UniqueLotId {
+public @interface UniqueLicensePlate {
     String message() default "must be unique";
 
     Class<?>[] groups() default {};
