@@ -5,7 +5,6 @@ import java.util.Objects;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.rethramos.smartpark.foundation.PersonRepository;
 import com.rethramos.smartpark.parking.ParkingLot;
 import com.rethramos.smartpark.parking.ParkingLotRepository;
 
@@ -15,14 +14,12 @@ import jakarta.validation.ConstraintViolationException;
 public class VehicleService {
     private final ParkingLotRepository parkingLotRepository;
     private VehicleRepository vehicleRepository;
-    private PersonRepository personRepository;
     private VehicleTypeRepository vehicleTypeRepository;
 
     public VehicleService(VehicleRepository vehicleRepository, VehicleTypeRepository vehicleTypeRepository,
-            PersonRepository personRepository, ParkingLotRepository parkingLotRepository) {
+            ParkingLotRepository parkingLotRepository) {
         this.vehicleRepository = vehicleRepository;
         this.vehicleTypeRepository = vehicleTypeRepository;
-        this.personRepository = personRepository;
         this.parkingLotRepository = parkingLotRepository;
     }
 
