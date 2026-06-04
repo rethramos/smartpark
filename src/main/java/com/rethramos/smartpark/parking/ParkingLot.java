@@ -19,7 +19,6 @@ public class ParkingLot {
     private Integer capacity;
     private Integer occupiedSpaces;
 
-    // Set<Vehicle> parkedVehicles;
     public Long getId() {
         return id;
     }

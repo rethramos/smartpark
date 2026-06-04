@@ -4,6 +4,7 @@ import com.rethramos.smartpark.foundation.Person;
 import com.rethramos.smartpark.parking.ParkingLot;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,8 +23,8 @@ public class Vehicle {
     private VehicleType vehicleType;
     @ManyToOne(optional = false)
     Person owner;
-    @ManyToOne
-    private ParkingLot parking;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private ParkingLot parkingLot;
 
     public Long getId() {
         return id;
@@ -49,12 +50,12 @@ public class Vehicle {
         this.vehicleType = vehicleType;
     }
 
-    public ParkingLot getParking() {
-        return parking;
+    public ParkingLot getParkingLot() {
+        return parkingLot;
     }
 
-    public void setParking(ParkingLot parking) {
-        this.parking = parking;
+    public void setParkingLot(ParkingLot parking) {
+        this.parkingLot = parking;
     }
 
     public Person getOwner() {
