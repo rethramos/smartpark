@@ -1,23 +1,27 @@
 package com.rethramos.smartpark.vehicle;
 
+import com.rethramos.smartpark.foundation.Person;
 import com.rethramos.smartpark.parking.ParkingLot;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(indexes = @Index(name = "license_plate_uniq", columnList = "license_plate", unique = true))
 public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String licensePlate;
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     private VehicleType vehicleType;
-    // Person owner;
+    @ManyToOne(optional = false)
+    Person owner;
     @ManyToOne
     private ParkingLot parking;
 
@@ -51,6 +55,14 @@ public class Vehicle {
 
     public void setParking(ParkingLot parking) {
         this.parking = parking;
+    }
+
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
     }
 
 }
