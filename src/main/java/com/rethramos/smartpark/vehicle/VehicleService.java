@@ -1,5 +1,6 @@
 package com.rethramos.smartpark.vehicle;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.stereotype.Service;
@@ -78,5 +79,14 @@ public class VehicleService {
         v.setVehicleType(vehicleTypeRepository.findByCode(dto.vehicleTypeCode()).orElseThrow());
 
         return v;
+    }
+
+    public List<Vehicle> findAll() {
+        return vehicleRepository.findAll();
+    }
+
+    public List<Vehicle> findByParkingLot(Long parkingLotId) {
+        return parkingLotRepository.findById(parkingLotId).map(p -> vehicleRepository.findByParkingLot(p))
+                .orElse(List.of());
     }
 }
