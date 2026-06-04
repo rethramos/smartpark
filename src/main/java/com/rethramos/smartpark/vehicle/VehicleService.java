@@ -9,6 +9,8 @@ import com.rethramos.smartpark.foundation.PersonRepository;
 import com.rethramos.smartpark.parking.ParkingLot;
 import com.rethramos.smartpark.parking.ParkingLotRepository;
 
+import jakarta.validation.ConstraintViolationException;
+
 @Service
 public class VehicleService {
     private final ParkingLotRepository parkingLotRepository;
@@ -36,6 +38,10 @@ public class VehicleService {
 
         if (currentParkingId != null && currentParkingId.equals(parkingLotId)) {
             return vehicle;
+        }
+
+        if (parkingLot.getOccupiedSpaces() >= parkingLot.getCapacity()) {
+            throw new ConstraintViolationException("parking lot full", null);
         }
 
         vehicle.setParkingLot(parkingLot);
