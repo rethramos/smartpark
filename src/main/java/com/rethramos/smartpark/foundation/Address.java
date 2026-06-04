@@ -15,8 +15,6 @@ public class Address {
     private String city;
     private String province;
     private String country;
-    private Double latitude;
-    private Double longitude;
 
     public Long getId() {
         return id;
@@ -64,22 +62,6 @@ public class Address {
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
     }
 
 }

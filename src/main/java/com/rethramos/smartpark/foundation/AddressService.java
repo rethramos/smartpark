@@ -20,6 +20,7 @@ public class AddressService {
         a.setLine2(dto.line2());
         a.setCity(dto.city());
         a.setProvince(dto.province());
+        a.setCountry(dto.country());
 
         return a;
     }
