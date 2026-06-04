@@ -9,23 +9,19 @@ import com.rethramos.smartpark.foundation.PersonRepository;
 import com.rethramos.smartpark.parking.ParkingLot;
 import com.rethramos.smartpark.parking.ParkingLotRepository;
 
-import jakarta.persistence.EntityManager;
-
 @Service
 public class VehicleService {
     private final ParkingLotRepository parkingLotRepository;
     private VehicleRepository vehicleRepository;
     private PersonRepository personRepository;
     private VehicleTypeRepository vehicleTypeRepository;
-    private EntityManager entityManager;
 
     public VehicleService(VehicleRepository vehicleRepository, VehicleTypeRepository vehicleTypeRepository,
-            PersonRepository personRepository, ParkingLotRepository parkingLotRepository, EntityManager entityManager) {
+            PersonRepository personRepository, ParkingLotRepository parkingLotRepository) {
         this.vehicleRepository = vehicleRepository;
         this.vehicleTypeRepository = vehicleTypeRepository;
         this.personRepository = personRepository;
         this.parkingLotRepository = parkingLotRepository;
-        this.entityManager = entityManager;
     }
 
     public Vehicle create(Vehicle vehicle) {
@@ -49,6 +45,27 @@ public class VehicleService {
         parkingLotRepository.save(parkingLot);
 
         return vehicleRepository.findById(saved.getId()).orElseThrow();
+    }
+
+    public Vehicle checkOut(Long vehicleId) {
+        Vehicle vehicle = vehicleRepository.findById(vehicleId).orElseThrow();
+
+        if (vehicle.getParkingLot() == null) {
+            return vehicle;
+        }
+
+        ParkingLot origParking = parkingLotRepository.findById(vehicle.getParkingLot().getId()).orElseThrow();
+        vehicle.setParkingLot(null);
+        vehicleRepository.save(vehicle);
+        Integer countByParkingLot = vehicleRepository.countByParkingLot(origParking);
+
+        ParkingLot parkingLot = parkingLotRepository.findById(origParking.getId()).map(p -> {
+            p.setOccupiedSpaces(countByParkingLot);
+            return p;
+        }).orElseThrow();
+        parkingLotRepository.save(parkingLot);
+
+        return vehicleRepository.findById(vehicle.getId()).orElseThrow();
     }
 
     public Vehicle toVehicle(CreateVehicleDto dto) {

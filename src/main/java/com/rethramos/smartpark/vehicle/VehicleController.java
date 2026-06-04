@@ -26,4 +26,9 @@ public class VehicleController {
         return vehicleService.checkIn(id, dto.parkingLotId());
     }
 
+    @PostMapping("/{id}/actions/check_out")
+    public @ResponseBody Vehicle checkOut(@PathVariable Long id) {
+        return vehicleService.checkOut(id);
+    }
+
 }
