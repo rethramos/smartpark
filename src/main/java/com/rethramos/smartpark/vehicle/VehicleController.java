@@ -19,8 +19,8 @@ public class VehicleController {
     }
 
     @PostMapping
-    public @ResponseBody Vehicle create(@RequestBody @Valid CreateVehicleDto entity) {
-        return vehicleService.create(vehicleService.toVehicle(entity));
+    public @ResponseBody Vehicle create(@RequestBody @Valid CreateVehicleDto dto) {
+        return vehicleService.create(vehicleService.toVehicle(dto));
     }
 
     @PostMapping("/{id}/actions/check_in")

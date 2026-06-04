@@ -71,7 +71,7 @@ public class VehicleService {
     public Vehicle toVehicle(CreateVehicleDto dto) {
         Vehicle v = new Vehicle();
         v.setLicensePlate(dto.licensePlate());
-        v.setOwner(personRepository.findById(dto.ownerId()).orElseThrow());
+        v.setOwnerName(dto.ownerName());
         v.setVehicleType(vehicleTypeRepository.findByCode(dto.vehicleTypeCode()).orElseThrow());
 
         return v;

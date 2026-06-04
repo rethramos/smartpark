@@ -1,6 +1,5 @@
 package com.rethramos.smartpark.vehicle;
 
-import com.rethramos.smartpark.foundation.Person;
 import com.rethramos.smartpark.parking.ParkingLot;
 
 import jakarta.persistence.Entity;
@@ -21,8 +20,7 @@ public class Vehicle {
     private String licensePlate;
     @ManyToOne(optional = false)
     private VehicleType vehicleType;
-    @ManyToOne(optional = false)
-    Person owner;
+    private String ownerName;
     @ManyToOne(fetch = FetchType.EAGER)
     private ParkingLot parkingLot;
 
@@ -58,12 +56,12 @@ public class Vehicle {
         this.parkingLot = parking;
     }
 
-    public Person getOwner() {
-        return owner;
+    public String getOwnerName() {
+        return ownerName;
     }
 
-    public void setOwner(Person owner) {
-        this.owner = owner;
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 
 }
