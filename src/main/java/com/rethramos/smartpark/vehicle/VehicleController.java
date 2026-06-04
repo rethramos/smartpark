@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(path = "/vehicles")
 public class VehicleController {
@@ -17,7 +19,7 @@ public class VehicleController {
     }
 
     @PostMapping
-    public @ResponseBody Vehicle create(@RequestBody CreateVehicleDto entity) {
+    public @ResponseBody Vehicle create(@RequestBody @Valid CreateVehicleDto entity) {
         return vehicleService.create(vehicleService.toVehicle(entity));
     }
 

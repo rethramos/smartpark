@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(path = "/parking_lots")
 public class ParkingLotController {
@@ -19,7 +21,7 @@ public class ParkingLotController {
     }
 
     @PostMapping
-    public @ResponseBody ParkingLot create(@RequestBody CreateParkingLotDto createParkingLotDto) {
+    public @ResponseBody ParkingLot create(@Valid @RequestBody CreateParkingLotDto createParkingLotDto) {
         return this.parkingLotService.create(parkingLotService.toParkingLot(createParkingLotDto));
 
     }
