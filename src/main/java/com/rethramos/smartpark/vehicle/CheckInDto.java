@@ -1,7 +1,7 @@
 package com.rethramos.smartpark.vehicle;
 
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
-public record CheckInDto(@NotEmpty Long parkingLotId) {
+public record CheckInDto(@NotNull Long parkingLotId) {
 
 }

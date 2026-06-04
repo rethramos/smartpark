@@ -38,7 +38,7 @@ public class VehicleController {
     }
 
     @PostMapping("/{id}/actions/check_in")
-    public @ResponseBody Vehicle checkIn(@PathVariable Long id, @RequestBody CheckInDto dto) {
+    public @ResponseBody Vehicle checkIn(@PathVariable Long id, @Valid @RequestBody CheckInDto dto) {
         return vehicleService.checkIn(id, dto.parkingLotId());
     }
 
