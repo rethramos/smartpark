@@ -27,17 +27,19 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.rethramos.smartpark.parking.ParkingLot;
 import com.rethramos.smartpark.parking.ParkingLotRepository;
 
+import jakarta.persistence.EntityManager;
 import jakarta.validation.ConstraintViolationException;
 
 @ExtendWith(MockitoExtension.class)
 public class VehicleServiceTests {
     @Mock
     private VehicleRepository vehicleRepository;
-
     @Mock
     private VehicleTypeRepository vehicleTypeRepository;
     @Mock
     private ParkingLotRepository parkingLotRepository;
+    @Mock
+    private EntityManager entityManager;
 
     @InjectMocks
     private VehicleService vehicleService;
@@ -55,7 +57,7 @@ public class VehicleServiceTests {
     }
 
     @Test
-    void testCheckInWhenAlreadyInSameParkingThenReturnVehicleWithoutChanges() {
+    void testCheckInWhenAlreadyInSameParkingThenDoNothing() {
         ParkingLot p = new ParkingLot();
         p.setId(10L);
         p.setCapacity(1);

@@ -19,17 +19,18 @@ import com.rethramos.smartpark.foundation.Address;
 import com.rethramos.smartpark.foundation.AddressRepository;
 import com.rethramos.smartpark.foundation.AddressService;
 
+import jakarta.persistence.EntityManager;
+
 @ExtendWith(MockitoExtension.class)
 public class ParkingLotServiceTests {
-
     @Mock
     private ParkingLotRepository parkingLotRepository;
-
     @Mock
     private AddressRepository addressRepository;
-
     @Mock
     private AddressService addressService;
+    @Mock
+    private EntityManager entityManager;
 
     @InjectMocks
     private ParkingLotService parkingLotService;

@@ -1,5 +1,7 @@
 package com.rethramos.smartpark.parking;
 
+import org.hibernate.annotations.Formula;
+
 import com.rethramos.smartpark.foundation.Address;
 
 import jakarta.persistence.Column;
@@ -22,6 +24,7 @@ public class ParkingLot {
     @OneToOne(optional = false)
     Address location;
     private Integer capacity;
+    @Formula("select count(v.id) from vehicle v where v.parking_lot_id = id")
     private Integer occupiedSpaces;
 
     public Long getId() {

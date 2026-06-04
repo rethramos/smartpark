@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.rethramos.smartpark.parking.ParkingLot;
 import com.rethramos.smartpark.parking.ParkingLotRepository;
 
+import jakarta.persistence.EntityManager;
 import jakarta.validation.ConstraintViolationException;
 
 @Service
@@ -16,12 +17,14 @@ public class VehicleService {
     private final ParkingLotRepository parkingLotRepository;
     private VehicleRepository vehicleRepository;
     private VehicleTypeRepository vehicleTypeRepository;
+    private EntityManager entityManager;
 
     public VehicleService(VehicleRepository vehicleRepository, VehicleTypeRepository vehicleTypeRepository,
-            ParkingLotRepository parkingLotRepository) {
+            ParkingLotRepository parkingLotRepository, EntityManager entityManager) {
         this.vehicleRepository = vehicleRepository;
         this.vehicleTypeRepository = vehicleTypeRepository;
         this.parkingLotRepository = parkingLotRepository;
+        this.entityManager = entityManager;
     }
 
     public Vehicle create(Vehicle vehicle) {
@@ -44,11 +47,10 @@ public class VehicleService {
 
         vehicle.setParkingLot(parkingLot);
         Vehicle saved = vehicleRepository.save(vehicle);
-        Integer countByParkingLot = vehicleRepository.countByParkingLot(parkingLot);
-        parkingLot.setOccupiedSpaces(countByParkingLot);
-        parkingLotRepository.save(parkingLot);
+        entityManager.flush();
+        entityManager.refresh(saved);
 
-        return vehicleRepository.findById(saved.getId()).orElseThrow();
+        return saved;
     }
 
     public Vehicle checkOut(Long vehicleId) {

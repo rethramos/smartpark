@@ -2,6 +2,7 @@ package com.rethramos.smartpark.vehicle;
 
 import com.rethramos.smartpark.parking.ParkingLot;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ public class Vehicle {
     @ManyToOne(optional = false)
     private VehicleType vehicleType;
     private String ownerName;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     private ParkingLot parkingLot;
 
     public Long getId() {
