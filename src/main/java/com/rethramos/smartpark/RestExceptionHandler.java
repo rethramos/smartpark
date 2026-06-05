@@ -9,7 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.rethramos.smartpark.vehicle.exeptions.ParkingLotFullException;
+import com.rethramos.smartpark.vehicle.exceptions.ParkingLotFullException;
 
 import jakarta.servlet.http.HttpServletRequest;
 

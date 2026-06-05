@@ -26,7 +26,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.rethramos.smartpark.parking.ParkingLot;
 import com.rethramos.smartpark.parking.ParkingLotRepository;
-import com.rethramos.smartpark.vehicle.exeptions.ParkingLotFullException;
+import com.rethramos.smartpark.vehicle.exceptions.ParkingLotFullException;
 
 import jakarta.persistence.EntityManager;
 

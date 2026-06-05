@@ -1,4 +1,4 @@
-package com.rethramos.smartpark.vehicle.exeptions;
+package com.rethramos.smartpark.vehicle.exceptions;
 
 public class ParkingLotFullException extends RuntimeException {
 

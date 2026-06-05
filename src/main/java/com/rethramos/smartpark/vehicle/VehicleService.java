@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.rethramos.smartpark.parking.ParkingLot;
 import com.rethramos.smartpark.parking.ParkingLotRepository;
-import com.rethramos.smartpark.vehicle.exeptions.ParkingLotFullException;
+import com.rethramos.smartpark.vehicle.exceptions.ParkingLotFullException;
 
 import jakarta.persistence.EntityManager;
 
@@ -91,4 +91,8 @@ public class VehicleService {
         return parkingLotRepository.findById(parkingLotId).map(p -> vehicleRepository.findByParkingLot(p))
                 .orElse(List.of());
     }
+
+    public List<VehicleType> findAllVehicleTypes() {
+        return vehicleTypeRepository.findAll();
+    } 
 }
