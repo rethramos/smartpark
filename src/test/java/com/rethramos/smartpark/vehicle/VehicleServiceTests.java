@@ -26,9 +26,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.rethramos.smartpark.parking.ParkingLot;
 import com.rethramos.smartpark.parking.ParkingLotRepository;
+import com.rethramos.smartpark.vehicle.exeptions.ParkingLotFullException;
 
 import jakarta.persistence.EntityManager;
-import jakarta.validation.ConstraintViolationException;
 
 @ExtendWith(MockitoExtension.class)
 public class VehicleServiceTests {
@@ -78,7 +78,7 @@ public class VehicleServiceTests {
     }
 
     @Test
-    void testCheckInWhenParkingFullThenThrowConstraintViolationException() {
+    void testCheckInWhenParkingFullThenThrowException() {
         ParkingLot p = new ParkingLot();
         p.setId(10L);
         p.setCapacity(2);
@@ -91,14 +91,14 @@ public class VehicleServiceTests {
         given(parkingLotRepository.findById(10L)).willReturn(Optional.of(p));
         given(vehicleRepository.findById(1L)).willReturn(Optional.of(v));
 
-        assertThrows(ConstraintViolationException.class, () -> vehicleService.checkIn(1L, 10L));
+        assertThrows(ParkingLotFullException.class, () -> vehicleService.checkIn(1L, 10L));
 
         then(vehicleRepository).should(never()).save(any());
         then(parkingLotRepository).should(never()).save(any(ParkingLot.class));
     }
 
     @Test
-    void testCheckInWhenSpaceAvailableThenAssignParkingAndUpdateOccupiedSpaces() {
+    void testCheckInWhenSpaceAvailableThenAssignParking() {
         ParkingLot targetParking = new ParkingLot();
         targetParking.setId(10L);
         targetParking.setCapacity(2);

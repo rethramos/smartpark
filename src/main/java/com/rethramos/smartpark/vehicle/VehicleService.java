@@ -8,9 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.rethramos.smartpark.parking.ParkingLot;
 import com.rethramos.smartpark.parking.ParkingLotRepository;
+import com.rethramos.smartpark.vehicle.exeptions.ParkingLotFullException;
 
 import jakarta.persistence.EntityManager;
-import jakarta.validation.ConstraintViolationException;
 
 @Service
 public class VehicleService {
@@ -42,7 +42,7 @@ public class VehicleService {
         }
 
         if (parkingLot.getOccupiedSpaces() >= parkingLot.getCapacity()) {
-            throw new ConstraintViolationException("parking lot full", null);
+            throw new ParkingLotFullException();
         }
 
         vehicle.setParkingLot(parkingLot);
